@@ -35,6 +35,8 @@ import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
+import static vn.zalopay.benchmark.constant.GrpcSamplerConstant.*;
+
 public class GRPCSamplerGui extends AbstractSamplerGui {
 
     private static final Logger log = LoggerFactory.getLogger(GRPCSamplerGui.class);
@@ -68,6 +70,8 @@ public class GRPCSamplerGui extends AbstractSamplerGui {
     private JCheckBox isTLSDisableVerificationCheckBox;
 
     private JSyntaxTextArea requestJsonArea;
+
+    private JComboBox<String> callTypeField;
 
     public GRPCSamplerGui() {
         super();
@@ -112,6 +116,8 @@ public class GRPCSamplerGui extends AbstractSamplerGui {
         grpcSampler.setChannelMaxInboundMessageSize(this.maxInboundMessageSize.getText());
         grpcSampler.setChannelMaxInboundMetadataSize(this.maxInboundMetadataSize.getText());
         grpcSampler.setRequestJson(this.requestJsonArea.getText());
+        grpcSampler.setCallType(this.callTypeField.getSelectedItem().toString());
+
     }
 
     @Override
@@ -137,6 +143,7 @@ public class GRPCSamplerGui extends AbstractSamplerGui {
         maxInboundMetadataSize.setText(
                 Integer.toString(grpcSampler.getChannelMaxInboundMetadataSize()));
         requestJsonArea.setText(grpcSampler.getRequestJson());
+        callTypeField.setSelectedItem(grpcSampler.getCallType());
     }
 
     @Override
@@ -159,6 +166,7 @@ public class GRPCSamplerGui extends AbstractSamplerGui {
         maxInboundMessageSize.setText("4194304");
         maxInboundMetadataSize.setText("8192");
         requestJsonArea.setText("");
+        callTypeField.setSelectedItem(CALL_TYPE_UNARY);
     }
 
     private void initGui() {
@@ -328,6 +336,16 @@ public class GRPCSamplerGui extends AbstractSamplerGui {
 
         // fullMethodButton click listener
         registerListGRPCMethodListener();
+        row++;
+
+        // Call type
+        addToPanel(
+                requestPanel, labelConstraints, 0, row, new JLabel("Call Type: ", JLabel.RIGHT));
+        addToPanel(requestPanel, editConstraints, 1, row,
+                callTypeField = new JComboBox<>(new String[] {
+                        CALL_TYPE_UNARY, CALL_TYPE_SERVER_STREAMING, CALL_TYPE_CLIENT_STREAMING, CALL_TYPE_BIDI_STREAMING}));
+        callTypeField.setEditable(true);
+        callTypeField.setMaximumRowCount(12);
 
         // Container
         JPanel container = new JPanel(new BorderLayout());

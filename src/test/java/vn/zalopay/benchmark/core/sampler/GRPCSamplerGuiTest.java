@@ -74,6 +74,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
         grpcSampler.setTls(true);
         grpcSampler.setTlsDisableVerification(true);
         grpcSampler.setRequestJson("dummyRequest");
+        grpcSampler.setCallType("unary");
         grpRequestPluginGUI.configure(grpcSampler);
         Assert.assertNotNull(grpcSampler);
         Assert.assertNotNull(grpRequestPluginGUI);
@@ -100,6 +101,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
         grpcSampler.setTls(true);
         grpcSampler.setTlsDisableVerification(true);
         grpcSampler.setRequestJson("dummyRequest");
+        grpcSampler.setCallType("unary");
         grpRequestPluginGUI.configure(grpcSampler);
         grpRequestPluginGUI.clearGui();
         Assert.assertNotNull(grpcSampler);
@@ -170,6 +172,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
         grpcSampler.setTls(true);
         grpcSampler.setTlsDisableVerification(true);
         grpcSampler.setRequestJson("dummyRequest");
+        grpcSampler.setCallType("unary");
         grpRequestPluginGUI.configure(grpcSampler);
         protoFolder.setText(PROTO_WITH_EXTERNAL_IMPORT_FOLDER.toString());
         libFolder.setText(LIB_FOLDER.toString());
@@ -216,6 +219,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
         grpcSampler.setTls(true);
         grpcSampler.setTlsDisableVerification(true);
         grpcSampler.setRequestJson("dummyRequest");
+        grpcSampler.setCallType("unary");
         grpRequestPluginGUI.configure(grpcSampler);
         protoFolder.setText(PROTO_WITH_EXTERNAL_IMPORT_FOLDER.toString());
         libFolder.setText(LIB_FOLDER.toString());
@@ -263,6 +267,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
         grpcSampler.setTls(true);
         grpcSampler.setTlsDisableVerification(true);
         grpcSampler.setRequestJson("dummyRequest");
+        grpcSampler.setCallType("unary");
         grpRequestPluginGUI.configure(grpcSampler);
         protoFolder.setText(PROTO_WITH_EXTERNAL_IMPORT_FOLDER.toString());
         libFolder.setText(LIB_FOLDER.toString());
@@ -312,6 +317,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
         grpcSampler.setTls(true);
         grpcSampler.setTlsDisableVerification(true);
         grpcSampler.setRequestJson("dummyRequest");
+        grpcSampler.setCallType("unary");
         grpRequestPluginGUI.configure(grpcSampler);
         protoFolder.setText(PROTO_FOLDER.toString());
         libFolder.setText("");
@@ -355,6 +361,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
             grpcSampler.setTls(true);
             grpcSampler.setTlsDisableVerification(true);
             grpcSampler.setRequestJson("dummyRequest");
+            grpcSampler.setCallType("unary");
             grpRequestPluginGUI.configure(grpcSampler);
             fullMethodButton.doClick();
         } catch (RuntimeException e) {
@@ -384,6 +391,7 @@ public class GRPCSamplerGuiTest extends BaseTest {
         grpcSampler.setTls(true);
         grpcSampler.setTlsDisableVerification(true);
         grpcSampler.setRequestJson(METADATA_REQUEST_JSON);
+        grpcSampler.setCallType("unary");
         grpRequestPluginGUI.configure(grpcSampler);
         Assert.assertNotNull(grpcSampler);
         Assert.assertNotNull(grpRequestPluginGUI);

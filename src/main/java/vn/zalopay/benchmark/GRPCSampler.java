@@ -20,6 +20,8 @@ import vn.zalopay.benchmark.util.ExceptionUtils;
 
 import java.nio.charset.StandardCharsets;
 
+import static vn.zalopay.benchmark.constant.GrpcSamplerConstant.*;
+
 public class GRPCSampler extends AbstractSampler implements ThreadListener, TestStateListener {
 
     private static final Logger log = LoggerFactory.getLogger(GRPCSampler.class);
@@ -40,6 +42,7 @@ public class GRPCSampler extends AbstractSampler implements ThreadListener, Test
             "GRPCSampler" + ".maxInboundMessageSize";
     public static final String CHANNEL_MAX_INBOUND_METADATA_SIZE =
             "GRPCSampler.maxInboundMetadataSize";
+    public static final String CALL_TYPE = "GRPCSampler.callType";
     private transient ClientCaller clientCaller;
     private GrpcRequestConfig grpcRequestConfig;
 
@@ -73,6 +76,7 @@ public class GRPCSampler extends AbstractSampler implements ThreadListener, Test
                             .awaitTerminationTimeout(getChannelShutdownAwaitTime())
                             .maxInboundMessageSize(getChannelMaxInboundMessageSize())
                             .maxInboundMetadataSize(getChannelMaxInboundMetadataSize())
+                            .callType(getCallType())
                             .build();
     }
 
@@ -148,7 +152,18 @@ public class GRPCSampler extends AbstractSampler implements ThreadListener, Test
     }
 
     private void processGrpcRequestSampler(SampleResult sampleResult) {
-        GrpcResponse grpcResponse = clientCaller.call(getDeadline());
+        GrpcResponse grpcResponse;
+        String callType = getCallType();
+        log.debug("processGrpcRequestSampler-callType: {}", callType);
+        if(CALL_TYPE_SERVER_STREAMING.equalsIgnoreCase(callType)) {
+            grpcResponse = clientCaller.callServerStreaming(getDeadline());
+        } else if(CALL_TYPE_CLIENT_STREAMING.equalsIgnoreCase(callType)) {
+            grpcResponse = clientCaller.callClientStreaming(getDeadline());
+        } else if(CALL_TYPE_BIDI_STREAMING.equalsIgnoreCase(callType)) {
+            grpcResponse = clientCaller.callBidiStreaming(getDeadline());
+        } else {
+            grpcResponse = clientCaller.call(getDeadline());
+        }
         sampleResult.sampleEnd();
         sampleResult.setDataType(SampleResult.TEXT);
         if (grpcResponse.isSuccess()) {
@@ -314,6 +329,14 @@ public class GRPCSampler extends AbstractSampler implements ThreadListener, Test
 
     private String getHostPort() {
         return getHost() + ":" + getPort();
+    }
+
+    public String getCallType() {
+        return getPropertyAsString(CALL_TYPE);
+    }
+
+    public void setCallType(String callType) {
+        setProperty(CALL_TYPE, callType);
     }
 
     @Override

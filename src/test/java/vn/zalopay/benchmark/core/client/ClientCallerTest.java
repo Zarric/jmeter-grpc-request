@@ -148,7 +148,8 @@ public class ClientCallerTest extends BaseTest {
                         FULL_METHOD,
                         true,
                         true,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.call("10000");
@@ -167,7 +168,8 @@ public class ClientCallerTest extends BaseTest {
                         FULL_METHOD,
                         true,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.call("10000");
@@ -214,7 +216,8 @@ public class ClientCallerTest extends BaseTest {
                             FULL_METHOD,
                             true,
                             false,
-                            DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                            DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                            CALL_TYPE);
             clientCaller = new ClientCaller(grpcRequestConfig);
             clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
             GrpcResponse resp = clientCaller.call("10000");
@@ -326,7 +329,8 @@ public class ClientCallerTest extends BaseTest {
                         FULL_METHOD,
                         true,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
     }
 
@@ -357,7 +361,8 @@ public class ClientCallerTest extends BaseTest {
                         FULL_METHOD,
                         true,
                         true,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
     }
 
@@ -385,7 +390,8 @@ public class ClientCallerTest extends BaseTest {
                         "bookstore.Bookstore/GetShelfStreamServer",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.callServerStreaming("1");
@@ -406,7 +412,8 @@ public class ClientCallerTest extends BaseTest {
                         "bookstore.Bookstore/GetShelfStreamClient",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.callClientStreaming("1");
@@ -427,7 +434,8 @@ public class ClientCallerTest extends BaseTest {
                         "bookstore.Bookstore/GetShelfStreamBidi",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.callBidiStreaming("1");
@@ -449,7 +457,8 @@ public class ClientCallerTest extends BaseTest {
                         "bookstore.Bookstore/invalidName",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
     }
@@ -466,7 +475,8 @@ public class ClientCallerTest extends BaseTest {
                         null,
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
     }
@@ -483,7 +493,8 @@ public class ClientCallerTest extends BaseTest {
                         " ",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.call("10");
@@ -504,7 +515,8 @@ public class ClientCallerTest extends BaseTest {
                         "",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.call("10");
@@ -525,7 +537,8 @@ public class ClientCallerTest extends BaseTest {
                         "bookstoreBookstore./CreateShelf",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.call("10");
@@ -547,7 +560,8 @@ public class ClientCallerTest extends BaseTest {
                         "bookstore.Bookstore/",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
         GrpcResponse resp = clientCaller.call("10");
@@ -568,7 +582,8 @@ public class ClientCallerTest extends BaseTest {
                         "bookstore.Bookstores/CreateShelf",
                         false,
                         false,
-                        DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                        DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                        CALL_TYPE);
         clientCaller = new ClientCaller(grpcRequestConfig);
         clientCaller.buildRequestAndMetadata(REQUEST_JSON, METADATA);
     }

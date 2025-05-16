@@ -10,13 +10,13 @@ public class GrpcRequestConfigTest {
     @Test
     public void canConvertConfigObjectToString() {
         GrpcRequestConfig grpcRequestConfig =
-                new GrpcRequestConfig("a", "b", "c", "d", true, true, 1000);
+                new GrpcRequestConfig("a", "b", "c", "d", true, true, 1000, "unary");
         String grpcRequestConfigString = grpcRequestConfig.toString();
         Assert.assertEquals(
                 grpcRequestConfigString,
                 "GrpcRequestConfig{maxInboundMessageSize=4194304, maxInboundMetadataSize=8192,"
                     + " hostPort='a', testProtoFile='b', libFolder='c', fullMethod='d', tls=true,"
-                    + " tlsDisableVerification=true, awaitTerminationTimeout=1000}");
+                    + " tlsDisableVerification=true, awaitTerminationTimeout=1000, callType=unary}");
     }
 
     @Test
@@ -33,6 +33,7 @@ public class GrpcRequestConfigTest {
                         .awaitTerminationTimeout(1000)
                         .maxInboundMessageSize(1000)
                         .maxInboundMetadataSize(1000)
+                        .callType("unary")
                         .build();
         softAssert.assertEquals(grpcRequestConfig.getHostPort(), "a");
         softAssert.assertEquals(grpcRequestConfig.getProtoFolder(), "b");
@@ -43,6 +44,7 @@ public class GrpcRequestConfigTest {
         softAssert.assertEquals(grpcRequestConfig.getAwaitTerminationTimeout(), 1000);
         softAssert.assertEquals(grpcRequestConfig.getMaxInboundMetadataSize(), 1000);
         softAssert.assertEquals(grpcRequestConfig.getMaxInboundMessageSize(), 1000);
+        softAssert.assertEquals(grpcRequestConfig.getCallType(), "unary");
         softAssert.assertAll();
     }
 
@@ -59,6 +61,7 @@ public class GrpcRequestConfigTest {
         softAssert.assertEquals(grpcRequestConfig.getAwaitTerminationTimeout(), 5000);
         softAssert.assertEquals(grpcRequestConfig.getMaxInboundMetadataSize(), 8192);
         softAssert.assertEquals(grpcRequestConfig.getMaxInboundMessageSize(), 4194304);
+        softAssert.assertEquals(grpcRequestConfig.getCallType(), null);
         softAssert.assertAll();
     }
 
@@ -75,6 +78,7 @@ public class GrpcRequestConfigTest {
         grpcRequestConfig.setAwaitTerminationTimeout(1000);
         grpcRequestConfig.setMaxInboundMessageSize(1000);
         grpcRequestConfig.setMaxInboundMetadataSize(1000);
+        grpcRequestConfig.setCallType("unary");
         softAssert.assertEquals(grpcRequestConfig.getHostPort(), "a");
         softAssert.assertEquals(grpcRequestConfig.getProtoFolder(), "b");
         softAssert.assertEquals(grpcRequestConfig.getLibFolder(), "c");
@@ -84,6 +88,7 @@ public class GrpcRequestConfigTest {
         softAssert.assertEquals(grpcRequestConfig.getAwaitTerminationTimeout(), 1000);
         softAssert.assertEquals(grpcRequestConfig.getMaxInboundMetadataSize(), 1000);
         softAssert.assertEquals(grpcRequestConfig.getMaxInboundMessageSize(), 1000);
+        softAssert.assertEquals(grpcRequestConfig.getCallType(), "unary");
         softAssert.assertAll();
     }
 

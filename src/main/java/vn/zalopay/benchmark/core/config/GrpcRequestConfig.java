@@ -17,6 +17,7 @@ public class GrpcRequestConfig {
     private boolean tls;
     private boolean tlsDisableVerification;
     private int awaitTerminationTimeout = 5000;
+    private String callType;
 
     public GrpcRequestConfig() {}
 
@@ -27,7 +28,8 @@ public class GrpcRequestConfig {
             String fullMethod,
             boolean tls,
             boolean tlsDisableVerification,
-            int awaitTerminationTimeout) {
+            int awaitTerminationTimeout,
+            String callType) {
         this.hostPort = hostPort;
         this.protoFolder = testProtoFile;
         this.libFolder = libFolder;
@@ -35,6 +37,7 @@ public class GrpcRequestConfig {
         this.tls = tls;
         this.tlsDisableVerification = tlsDisableVerification;
         this.awaitTerminationTimeout = awaitTerminationTimeout;
+        this.callType = callType;
     }
 
     public String getHostPort() {
@@ -73,6 +76,10 @@ public class GrpcRequestConfig {
         return maxInboundMetadataSize;
     }
 
+    public String getCallType() {
+        return callType;
+    }
+
     @Override
     public String toString() {
         return "GrpcRequestConfig{"
@@ -98,6 +105,8 @@ public class GrpcRequestConfig {
                 + tlsDisableVerification
                 + ", awaitTerminationTimeout="
                 + awaitTerminationTimeout
+                + ", callType="
+                + callType
                 + '}';
     }
 }

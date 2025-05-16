@@ -56,6 +56,7 @@ public class BaseTest {
     protected static String FULL_METHOD = "bookstore.Bookstore/CreateShelf";
     protected static String FULL_METHOD_INVALID = "bookstore.Bookstore/Invalid";
     protected static String METADATA = "";
+    protected static String CALL_TYPE = "unary";
     protected static final GrpcRequestConfig DEFAULT_GRPC_REQUEST_CONFIG =
             new GrpcRequestConfig(
                     HOST_PORT,
@@ -64,7 +65,8 @@ public class BaseTest {
                     FULL_METHOD,
                     false,
                     false,
-                    DEFAULT_CHANNEL_SHUTDOWN_TIME);
+                    DEFAULT_CHANNEL_SHUTDOWN_TIME,
+                    CALL_TYPE);
     // JSON METADATA TEST
     protected static String METADATA_JSON = "{\"key1\":\"Value1\"}";
     protected static String FULL_METHOD_WITH_METADATA =
